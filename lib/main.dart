@@ -29,33 +29,44 @@ class MyApp extends StatelessWidget {
               child: Card(
                 color: Colors.grey[350],
                 child: Text('Chart'),
-                elevation: 5,
+                //elevation: 5,
               ),
             ),
-            Column(children: transactions.map((txn) {
+            Column(
+                children: transactions.map((txn) {
               return Card(
+                color: Colors.grey[200],
                 child: Row(
                   children: <Widget>[
                     Container(
-                      padding: EdgeInsets.all(10),
-                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 1,),
-                        borderRadius: BorderRadius.circular(2)
-                      ),
-
-                      child: Text(txn.amount.toString())),
+                        padding: EdgeInsets.all(10),
+                        margin:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.purple,
+                              width: 1,
+                            ),
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text(
+                          txn.amount.toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.purple),
+                              
+                        )),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(txn.title),
-                        Text(txn.date.toString()),
+                        Text(txn.title, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),),
+                        Text(txn.date.toString(), style: TextStyle(color: Colors.grey),),
                       ],
                     ),
                   ],
                 ),
               );
-            }).toList()
-            ),
+            }).toList()),
           ],
         ),
       ),
