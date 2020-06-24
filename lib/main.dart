@@ -39,7 +39,11 @@ class MyApp extends StatelessWidget {
                     Container(
                       padding: EdgeInsets.all(10),
                       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      decoration: BoxDecoration(border: Border.all(color: Colors.black, width: 1)),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black, width: 1,),
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+
                       child: Text(txn.amount.toString())),
                     Column(
                       children: <Widget>[
