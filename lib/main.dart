@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
                       margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       decoration: BoxDecoration(
                         border: Border.all(color: Colors.black, width: 1,),
-                        borderRadius: BorderRadius.circular(5)
+                        borderRadius: BorderRadius.circular(2)
                       ),
 
                       child: Text(txn.amount.toString())),
