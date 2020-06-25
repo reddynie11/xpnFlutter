@@ -10,9 +10,9 @@ class TxnList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 290,
-      child: ListView(
-        children: transactions.map((txn) {
-        return Card(
+      child: ListView.builder(
+        itemBuilder: (context, index) {
+          return Card(
           color: Colors.grey[200],
           child: Row(
             children: <Widget>[
@@ -26,7 +26,7 @@ class TxnList extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
-                    'INR ${txn.amount}',
+                    'INR ${transactions[index].amount}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -36,11 +36,11 @@ class TxnList extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    txn.title,
+                    transactions[index].title,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    DateFormat.yMMMd().format(txn.date),
+                    DateFormat.yMMMd().format(transactions[index].date),
                     style: TextStyle(color: Colors.grey),
                   ),
                 ],
@@ -48,7 +48,9 @@ class TxnList extends StatelessWidget {
             ],
           ),
         );
-      }).toList()),
+        },
+        itemCount: transactions.length,
+      )
     );
   }
 }
