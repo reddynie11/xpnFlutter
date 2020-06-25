@@ -14,20 +14,22 @@ class MyApp extends StatelessWidget {
           title: Text('Expense Tracker'),
           backgroundColor: Colors.red[400],
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              width: double.infinity,
-              height: 100,
-              child: Card(
-                color: Colors.grey[350],
-                child: Text('Chart'),
-                //elevation: 5,
+        body: SingleChildScrollView(
+                  child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                width: double.infinity,
+                height: 250,
+                child: Card(
+                  color: Colors.grey[350],
+                  child: Text('Chart'),
+                  //elevation: 5,
+                ),
               ),
-            ),
-            TxnContainer(),
-          ],
+              TxnContainer(),
+            ],
+          ),
         ),
       ),
     );
