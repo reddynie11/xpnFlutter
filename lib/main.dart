@@ -11,6 +11,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Expense Tracker',
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        fontFamily: 'Cairo'
+        //accentColor: Colors.amber
+      ),
       home: HomeScreen(),
     );
   }
@@ -46,7 +51,7 @@ class _HomeScreenState extends State {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Expense Tracker'),
+          title: Text('Expense Tracker', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),),
           backgroundColor: Colors.purple[600],
         ),
         body: SingleChildScrollView(
@@ -67,7 +72,7 @@ class _HomeScreenState extends State {
           ),
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
+          child: Icon(Icons.add, color: Colors.white,),
           onPressed: () {
             showModalBottomSheet(
               context: context,
@@ -76,7 +81,6 @@ class _HomeScreenState extends State {
               },
             );
           },
-          backgroundColor: Colors.purple[600],
         ),
       );
   }
