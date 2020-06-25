@@ -3,11 +3,22 @@ import 'package:flutter/material.dart';
 class TxnInput extends StatelessWidget {
 
   final titleInputController = TextEditingController();
-  final amountInputCOntroller = TextEditingController();
+  final amountInputController = TextEditingController();
   final descInputController = TextEditingController();
   final Function addExpense;
 
   TxnInput(this.addExpense);
+
+  void submitExpense() {
+    final inputTitle = titleInputController.text;
+    final inputAmount = double.parse(amountInputController.text);
+    final inputDesc = descInputController.text;
+
+    if(inputTitle.isEmpty || inputAmount <= 0){
+      return;
+    }
+    addExpense(inputTitle, inputAmount, inputDesc);
+  }
 
   @override 
   Widget build(BuildContext context) {
@@ -20,14 +31,18 @@ class TxnInput extends StatelessWidget {
                     TextField(
                       decoration: InputDecoration(labelText: 'Title'),
                       controller: titleInputController,
+                      onSubmitted: (_) => submitExpense(),
                     ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Amount'),
-                      controller: amountInputCOntroller,
+                      controller: amountInputController,
+                      keyboardType: TextInputType.number,
+                      onSubmitted: (_) => submitExpense()
                     ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Description'),
                       controller: descInputController,
+                      onSubmitted: (_) => submitExpense()
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -44,13 +59,7 @@ class TxnInput extends StatelessWidget {
                         ),
                         RaisedButton(
                           child: Text('Add Expense'),
-                          onPressed: () {
-                            addExpense(
-                              titleInputController.text,
-                              double.parse(amountInputCOntroller.text ),
-                              descInputController.text
-                            );
-                          },
+                          onPressed: submitExpense,
                           color: Colors.purple[600],
                           textColor: Colors.white,
                         ),
