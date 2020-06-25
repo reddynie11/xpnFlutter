@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
           title: Text('Expense Tracker'),
           backgroundColor: Colors.red[400],
         ),
-        body: SingleChildScrollView(
+        body: SingleChildScrollView (
                   child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
