@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 
-class TxnInput extends StatelessWidget {
+class TxnInput extends StatefulWidget {
 
-  final titleInputController = TextEditingController();
-  final amountInputController = TextEditingController();
-  final descInputController = TextEditingController();
   final Function addExpense;
 
   TxnInput(this.addExpense);
+
+  @override
+  _TxnInputState createState() => _TxnInputState();
+}
+
+class _TxnInputState extends State<TxnInput> {
+  final titleInputController = TextEditingController();
+
+  final amountInputController = TextEditingController();
+
+  final descInputController = TextEditingController();
 
   void submitExpense() {
     final inputTitle = titleInputController.text;
@@ -17,7 +25,8 @@ class TxnInput extends StatelessWidget {
     if(inputTitle.isEmpty || inputAmount <= 0){
       return;
     }
-    addExpense(inputTitle, inputAmount, inputDesc);
+    widget.addExpense(inputTitle, inputAmount, inputDesc);
+    Navigator.of(context).pop();
   }
 
   @override 
@@ -37,12 +46,12 @@ class TxnInput extends StatelessWidget {
                       decoration: InputDecoration(labelText: 'Amount'),
                       controller: amountInputController,
                       keyboardType: TextInputType.number,
-                      onSubmitted: (_) => submitExpense()
+                      //onSubmitted: (_) => submitExpense()
                     ),
                     TextField(
                       decoration: InputDecoration(labelText: 'Description'),
                       controller: descInputController,
-                      onSubmitted: (_) => submitExpense()
+                      //onSubmitted: (_) => submitExpense()
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
