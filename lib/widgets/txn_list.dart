@@ -26,7 +26,7 @@ class TxnList extends StatelessWidget {
                       ),
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
-                    'INR ${transactions[index].amount}',
+                    'INR ${transactions[index].amount.toStringAsFixed(0)}',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,

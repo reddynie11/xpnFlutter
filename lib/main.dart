@@ -5,17 +5,16 @@ import './widgets/txn_ctnr.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Expense Tracker'),
-          backgroundColor: Colors.red[400],
+          backgroundColor: Colors.purple[600],
         ),
-        body: SingleChildScrollView (
-                  child: Column(
+        body: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Container(
@@ -30,6 +29,11 @@ class MyApp extends StatelessWidget {
               TxnContainer(),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {},
+          backgroundColor: Colors.purple[600],
         ),
       ),
     );
