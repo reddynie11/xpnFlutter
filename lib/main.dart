@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           children: <Widget>[
             Container(
               width: double.infinity,
-              height: 300,
+              height: 100,
               child: Card(
                 color: Colors.grey[350],
                 child: Text('Chart'),

@@ -5,7 +5,10 @@ class TxnInput extends StatelessWidget {
   final titleInputController = TextEditingController();
   final amountInputCOntroller = TextEditingController();
   final descInputController = TextEditingController();
-  
+  final Function addExpense;
+
+  TxnInput(this.addExpense);
+
   @override 
   Widget build(BuildContext context) {
     return Card(
@@ -42,9 +45,11 @@ class TxnInput extends StatelessWidget {
                         RaisedButton(
                           child: Text('Add Expense'),
                           onPressed: () {
-                            print(titleInputController.text);
-                            print(amountInputCOntroller.text);
-                            print(descInputController.text);
+                            addExpense(
+                              titleInputController.text,
+                              double.parse(amountInputCOntroller.text ),
+                              descInputController.text
+                            );
                           },
                           color: Colors.purple[600],
                           textColor: Colors.white,

@@ -4,18 +4,12 @@ import 'package:intl/intl.dart';
 import '../models/txn.dart';
 
 class TxnList extends StatelessWidget {
- 
-  final List<Txn> _transactions = [
-    Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
-    Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
-    Txn(id: 't3', title: 'Shoes', amount: 4000, date: DateTime.now()),
-    // Txn(id: 't4', title: 'Restaurant', amount: 1000, date: DateTime.now()),
-    // Txn(id: 't5', title: 'Fuel', amount: 2000, date: DateTime.now()),
-  ];
+  final List<Txn> transactions;
+  TxnList(this.transactions);
   @override 
   Widget build(BuildContext context) {
     return Column(
-                children: _transactions.map((txn) {
+                children: transactions.map((txn) {
               return Card(
                 color: Colors.grey[200],
                 child: Row(
