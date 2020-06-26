@@ -27,8 +27,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State {
   final List<Txn> _transactions = [
-    // Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
-    // Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
+    Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
+    Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
+    Txn(id: 't3', title: 'Shoes', amount: 4000, date: DateTime.now()),
+    Txn(id: 't4', title: 'Restaurant', amount: 1000, date: DateTime.now()),
+    Txn(id: 't5', title: 'Fuel', amount: 2000, date: DateTime.now()),
+    Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
+    Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
     Txn(id: 't3', title: 'Shoes', amount: 4000, date: DateTime.now()),
     Txn(id: 't4', title: 'Restaurant', amount: 1000, date: DateTime.now()),
     Txn(id: 't5', title: 'Fuel', amount: 2000, date: DateTime.now()),
@@ -44,6 +49,14 @@ class _HomeScreenState extends State {
     setState(() {
       _transactions.add(newExpense);
     });
+  }
+
+  List<Txn> get recentTxns {
+    return _transactions.where((tx) {
+      return tx.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
   }
 
   @override
@@ -74,9 +87,10 @@ class _HomeScreenState extends State {
                   Container(
                     width: double.infinity,
                     height: 300,
-                    padding: EdgeInsets.all(5) ,
+                    padding: EdgeInsets.all(5),
                     child: Card(
-                      child: Container(padding: EdgeInsets.all(10) ,child: ExpenseChart()),
+                      child: Container(
+                          padding: EdgeInsets.all(10), child: ExpenseChart(recentTxns)),
                       elevation: 5,
                     ),
                   ),

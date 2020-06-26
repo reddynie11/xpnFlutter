@@ -1,16 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:intl/intl.dart';
+
+import '../models/txn.dart';
 
 class ExpenseChart extends StatelessWidget {
-  final List<ChartData> chartTxns = [
-    ChartData('May 21', 1500),
-    ChartData('May 22', 1100),
-    ChartData('May 23', 10),
-    ChartData('May 24', 100),
-    ChartData('May 25', 200),
-    ChartData('May 26', 5000),
-    ChartData('May 26', 12000)
-  ];
+  final List<Txn> chartTxns;
+
+  ExpenseChart(this.chartTxns);
+
+  List<ChartData> get groupedData {
+    return List.generate(7, (index){
+      final date = DateTime.now().subtract(Duration(days: index));
+      var totalExpense = 0.0;
+      for(var i =0; i< chartTxns.length; i++){
+        if(chartTxns[i].date.day == date.day && chartTxns[i].date.month == date.month && chartTxns[i].date.year == date.year ){
+          totalExpense += chartTxns[i].amount;
+        }
+      }
+      return ChartData(DateFormat.MMMd().format(date).toString(), totalExpense);
+    });
+  }
   
   @override 
   Widget build(BuildContext context) {
@@ -18,9 +28,9 @@ class ExpenseChart extends StatelessWidget {
       charts.Series(
         id: 'Expense',
         colorFn: (_, __) => charts.MaterialPalette.purple.shadeDefault,
-        domainFn: ( ChartData expenses,_) => expenses.year,
+        domainFn: ( ChartData expenses,_) => expenses.date,
         measureFn: (ChartData expenses,_) => expenses.expense,
-        data: chartTxns,
+        data: groupedData,
         labelAccessorFn: (ChartData expenses,_) => '${expenses.expense}'
                 
       )
@@ -35,8 +45,8 @@ class ExpenseChart extends StatelessWidget {
 } 
 
 class ChartData {
-    final String year;
-    final int expense;
+    final String date;
+    final double expense;
 
-    ChartData(this.year, this.expense);
+    ChartData(this.date, this.expense);
   }
