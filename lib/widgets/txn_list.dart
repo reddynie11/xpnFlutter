@@ -5,7 +5,8 @@ import '../models/txn.dart';
 
 class TxnList extends StatelessWidget {
   final List<Txn> transactions;
-  TxnList(this.transactions);
+  final Function deleteExpense;
+  TxnList(this.transactions, this.deleteExpense);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,6 +33,11 @@ class TxnList extends StatelessWidget {
                 subtitle: Text(
                   DateFormat.yMMMd().format(transactions[index].date),
                   style: TextStyle(color: Colors.grey),
+                ),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  color: Colors.red[600],
+                  onPressed: () => deleteExpense(transactions[index].id),
                 ),
               ),
             );

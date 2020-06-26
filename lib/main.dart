@@ -27,27 +27,35 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State {
   final List<Txn> _transactions = [
-    Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
-    Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
-    Txn(id: 't3', title: 'Shoes', amount: 4000, date: DateTime.now()),
-    Txn(id: 't4', title: 'Restaurant', amount: 1000, date: DateTime.now()),
-    Txn(id: 't5', title: 'Fuel', amount: 2000, date: DateTime.now()),
-    Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
-    Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
-    Txn(id: 't3', title: 'Shoes', amount: 4000, date: DateTime.now()),
-    Txn(id: 't4', title: 'Restaurant', amount: 1000, date: DateTime.now()),
-    Txn(id: 't5', title: 'Fuel', amount: 2000, date: DateTime.now()),
+    // Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
+    // Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
+    // Txn(id: 't3', title: 'Shoes', amount: 4000, date: DateTime.now()),
+    // Txn(id: 't4', title: 'Restaurant', amount: 1000, date: DateTime.now()),
+    // Txn(id: 't5', title: 'Fuel', amount: 2000, date: DateTime.now()),
+    // Txn(id: 't1', title: 'Groceries', amount: 1000, date: DateTime.now()),
+    // Txn(id: 't2', title: 'Shirts', amount: 2500, date: DateTime.now()),
+    // Txn(id: 't3', title: 'Shoes', amount: 4000, date: DateTime.now()),
+    // Txn(id: 't4', title: 'Restaurant', amount: 1000, date: DateTime.now()),
+    // Txn(id: 't5', title: 'Fuel', amount: 2000, date: DateTime.now()),
   ];
 
-  void _addExpense(String title, double amount, String desc) {
+  void _addExpense(String title, double amount, String desc, DateTime selectedDate) {
     final newExpense = Txn(
         title: title,
         amount: amount,
-        date: DateTime.now(),
+        date: selectedDate,
         id: DateTime.now().toString(),
         description: desc);
     setState(() {
       _transactions.add(newExpense);
+    });
+  }
+
+  void deleteExpense(String id){
+    setState(() {
+      _transactions.removeWhere((tx) {
+       return tx.id == id;
+      } );
     });
   }
 
@@ -94,7 +102,7 @@ class _HomeScreenState extends State {
                       elevation: 5,
                     ),
                   ),
-                  TxnList(_transactions),
+                  TxnList(_transactions, deleteExpense),
                 ],
               ),
       ),
